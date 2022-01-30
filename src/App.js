@@ -27,38 +27,11 @@ return (
   <div className="App">
     <h1>Activity generator</h1>
     <Activity {...idea} />
-    <button
-      onClick={() => {
-        handleClick("?participants");
-      }}
-    >
-      {" "}
-      any amount of people{" "}
-    </button>
-    <button
-      onClick={() => {
-        handleClick("?participants=1");
-      }}
-    >
-      {" "}
-      1 person{" "}
-    </button>
-    <button
-      onClick={() => {
-        handleClick("?participants=2");
-      }}
-    >
-      {" "}
-      2 people{" "}
-    </button>
-    <button
-      onClick={() => {
-        handleClick("?participants=4");
-      }}
-    >
-      {" "}
-      4 people{" "}
-    </button>
+    <h2>Click on any button below to generate a new activity</h2>
+    <button onClick={() => { handleClick("?participants") }}>any amount of people</button>
+    <button onClick={() => { handleClick("?participants=1") }}>1 person</button>
+    <button onClick={() => { handleClick("?participants=2") }}>2 people</button>
+    <button onClick={() => { handleClick("?participants=4") }}>4 people</button>
   </div>
   );
 }
