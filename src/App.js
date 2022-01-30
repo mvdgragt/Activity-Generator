@@ -1,24 +1,65 @@
-import logo from './logo.svg';
+import { useState, useEffect } from "react";
+
+// components
+import Activity from "./Components/Activity";
+
+// styles
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+// storing data
+const [idea, setIdea] = useState([]);
+const [url, setUrl] = useState("https://boredapi.com/api/activity/");
+const [newFetch, setNewFetch] = useState(false);
+
+useEffect(() => {
+  fetch(url)
+    .then((response) => response.json())
+    .then((json) => setIdea(json));
+}, [url, newFetch]);
+
+const handleClick = (y) => {
+  setUrl("https://boredapi.com/api/activity" + y);
+  setNewFetch(!newFetch);
+};
+
+return (
+  <div className="App">
+    <h1>Activity generator</h1>
+    <Activity {...idea} />
+    <button
+      onClick={() => {
+        handleClick("?participants");
+      }}
+    >
+      {" "}
+      any amount of people{" "}
+    </button>
+    <button
+      onClick={() => {
+        handleClick("?participants=1");
+      }}
+    >
+      {" "}
+      1 person{" "}
+    </button>
+    <button
+      onClick={() => {
+        handleClick("?participants=2");
+      }}
+    >
+      {" "}
+      2 people{" "}
+    </button>
+    <button
+      onClick={() => {
+        handleClick("?participants=4");
+      }}
+    >
+      {" "}
+      4 people{" "}
+    </button>
+  </div>
   );
 }
 
